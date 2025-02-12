@@ -45,16 +45,13 @@ Open sentiment_analysis.ipynb and run all cells.
 📌 Location: backend/app.py
 
 Navigate to the backend folder:
-```sh
 cd backend
+
 Install dependencies:
-```sh
 pip install -r requirements.txt
+
 Start the FastAPI server:
-```sh
 uvicorn app:app --reload
-
-
 
 API will be available at:
 Docs: http://127.0.0.1:8000/docs
@@ -63,9 +60,66 @@ Analyze Sentiment: http://127.0.0.1:8000/analyze
 
 
 
+---------------------------------------------------------------------------
+
 🎨 4️⃣ Running the Frontend (React + TailwindCSS)
 📌 Location: sentiment-ui/
 
 Navigate to the UI folder:
 cd sentiment-ui
 npm run dev
+
+
+
+
+
+
+
+📡 5️⃣ API Usage (Testing in 3 Ways)
+➡️ Method 1: Using Python (test_api.py)
+📌 Location: backend/test_api.py
+
+Run the API server first:
+
+uvicorn app:app --reload
+
+
+Run the test script:
+
+python test_api.py
+
+
+-------------------------------------------------------------------
+
+➡️ Method 2: Using curl (Command Line)
+After running uvicorn app:app --reload, test using curl:
+
+curl -X 'POST' 'http://127.0.0.1:8000/analyze/' \
+-H 'Content-Type: application/json' \
+-d '{"text": "I love this!", "model": "custom"}'
+
+-------------------------------------------------------------------
+
+➡️ Method 3: Using Postman
+Open Postman
+Enter the API URL:
+http://127.0.0.1:8000/analyze/
+
+Choose POST method
+Go to "Body" → Select "raw" → Choose JSON format
+
+Enter this JSON payload:
+json
+{
+    "text": "I love this!",
+    "model": "custom"
+}
+
+Click "Send" and check the response
+
+
+--------------------------------------------------------------------
+
+🔄 6️⃣ Change Sentences & Models Anytime
+Modify the text in the Python script, curl, or Postman.
+Change the model between "custom" and "llama" in all three methods.
